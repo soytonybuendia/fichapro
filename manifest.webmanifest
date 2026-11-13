@@ -1,0 +1,16 @@
+{
+  "name": "FichaPro · Publica tu propiedad",
+  "short_name": "FichaPro",
+  "description": "Ficha PDF, fotos para Marketplace, historia, catálogo de WhatsApp y textos para portales, desde tu teléfono.",
+  "lang": "es-MX",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#F2F2F2",
+  "theme_color": "#252526",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" },
+    { "src": "icons/icon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

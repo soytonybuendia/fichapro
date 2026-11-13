@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>FichaPro · Publica tu propiedad</title>
+<meta name="description" content="Captura los datos y fotos de tu propiedad y obtén en un minuto la ficha PDF, las fotos para Marketplace, la historia, el catálogo de WhatsApp y los textos para cada portal.">
+<meta name="theme-color" content="#252526">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="FichaPro">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand"><span class="mark">F</span>FichaPro</div>
+  <nav class="steps" aria-label="Pasos">
+    <button type="button" data-step="perfil" aria-current="step"><b>1</b><span>Tu perfil</span></button>
+    <button type="button" data-step="propiedad"><b>2</b><span>Propiedad</span></button>
+    <button type="button" data-step="fotos"><b>3</b><span>Fotos</span></button>
+    <button type="button" data-step="kit"><b>4</b><span>Tu kit</span></button>
+  </nav>
+</header>
+
+<main>
+<!-- PASO 1 -->
+<section class="step" id="step-perfil">
+  <h1>Tu perfil</h1>
+  <p class="lead">Se llena una sola vez. Aparece en la ficha, las imágenes y los textos.</p>
+  <div class="card">
+    <label>Tu nombre como quieres que aparezca<input name="perfil.nombre" autocomplete="given-name" placeholder="Ej. Tony"></label>
+    <label>Teléfono / WhatsApp<input name="perfil.telefono" type="tel" inputmode="tel" placeholder="998 720 1007"></label>
+    <label>Rol<input name="perfil.rol" placeholder="Asesor inmobiliario"></label>
+    <label>Inmobiliaria o marca <small>(opcional)</small><input name="perfil.empresa" placeholder="Ej. Century 21 Best Properties"></label>
+  </div>
+  <div class="card">
+    <h2>Logo y colores</h2>
+    <div class="logo-row">
+      <div class="logo-prev" id="logoPrev">Sin logo</div>
+      <div>
+        <label class="btn ghost file">Subir logo<input type="file" accept="image/*" id="logoFile" hidden></label>
+        <button type="button" class="link" id="logoQuitar" hidden>Quitar logo</button>
+        <p class="hint">PNG con fondo transparente se ve mejor: lo ponemos en blanco sobre las fotos.</p>
+      </div>
+    </div>
+    <div class="row2">
+      <label>Color principal<input type="color" name="perfil.oscuro"></label>
+      <label>Color de acento<input type="color" name="perfil.acento"></label>
+    </div>
+  </div>
+</section>
+
+<!-- PASO 2 -->
+<section class="step" id="step-propiedad" hidden>
+  <div class="head-row"><h1>La propiedad</h1><button type="button" class="btn ghost sm" id="nueva">Nueva propiedad</button></div>
+  <p class="lead">Entre más completo, mejores textos. Lo que dejes vacío no aparece.</p>
+  <div class="card">
+    <div class="row2">
+      <label>Tipo
+        <select name="prop.tipo">
+          <option>Departamento</option><option>Casa</option><option>Casa en condominio</option><option>Terreno</option>
+          <option>Local comercial</option><option>Oficina</option><option>Bodega</option>
+        </select>
+      </label>
+      <label>Clave o ID <small>(opcional)</small><input name="prop.clave" placeholder="C21-626098"></label>
+    </div>
+    <label>Nombre de la propiedad<input name="prop.titulo" placeholder="Ej. Depa Aqua 302"></label>
+  </div>
+
+  <div class="card">
+    <h2>Operación y precio</h2>
+    <div class="toggles">
+      <label class="tog"><input type="checkbox" name="prop.renta"><span>En renta</span></label>
+      <label class="tog"><input type="checkbox" name="prop.venta"><span>En venta</span></label>
+    </div>
+    <div class="if-renta">
+      <div class="row2">
+        <label>Renta mensual<input name="prop.precioRenta" inputmode="numeric" placeholder="12000"></label>
+        <label>Moneda<select name="prop.monedaRenta"><option>MXN</option><option>USD</option></select></label>
+      </div>
+      <div class="row2">
+        <label>Mantenimiento mensual<input name="prop.mant" inputmode="numeric" placeholder="1360"></label>
+        <label class="check"><input type="checkbox" name="prop.mantIncluido">Mantenimiento incluido en la renta</label>
+      </div>
+    </div>
+    <div class="if-venta">
+      <div class="row2">
+        <label>Precio de venta<input name="prop.precioVenta" inputmode="numeric" placeholder="2000000"></label>
+        <label>Moneda<select name="prop.monedaVenta"><option>MXN</option><option>USD</option></select></label>
+      </div>
+      <label class="check"><input type="checkbox" name="prop.libreGravamen">Libre de gravamen</label>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Ubicación</h2>
+    <label>Desarrollo, calle o referencia <small>(opcional)</small><input name="prop.direccion" placeholder="Residencial Aqua, Av. Huayacán"></label>
+    <div class="row3">
+      <label>Colonia / zona<input name="prop.colonia" placeholder="SM 326"></label>
+      <label>Ciudad<input name="prop.ciudad" placeholder="Cancún"></label>
+      <label>Estado<input name="prop.estado" placeholder="Quintana Roo"></label>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Características</h2>
+    <div class="row3">
+      <label>m² construcción<input name="prop.m2" inputmode="decimal"></label>
+      <label>m² terreno<input name="prop.m2terreno" inputmode="decimal"></label>
+      <label>Recámaras<input name="prop.rec" inputmode="numeric"></label>
+      <label>Baños<input name="prop.banos" inputmode="numeric"></label>
+      <label>Medios baños<input name="prop.mediosBanos" inputmode="numeric"></label>
+      <label>Estacionamientos<input name="prop.estac" inputmode="numeric"></label>
+      <label>Piso o niveles<input name="prop.piso" placeholder="3er piso"></label>
+      <label>Antigüedad<input name="prop.antiguedad" placeholder="Nuevo / 5 años"></label>
+      <label>Amueblado
+        <select name="prop.amueblado"><option value="">—</option><option>Sin amueblar</option><option>Semiamueblado</option><option>Amueblado</option></select>
+      </label>
+      <label>Mascotas
+        <select name="prop.mascotas"><option value="">—</option><option>Se aceptan mascotas</option><option>No se aceptan mascotas</option></select>
+      </label>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Amenidades</h2>
+    <div class="chips" id="amenChips"></div>
+    <div class="add-row">
+      <input id="amenNueva" placeholder="Agregar otra (ej. Muelle privado)">
+      <button type="button" class="btn ghost" id="amenAdd">Agregar</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Descripción</h2>
+    <label>Cuéntala con tus palabras: lo mejor de la propiedad y de la zona
+      <textarea name="prop.descripcion" rows="6" placeholder="Departamento iluminado con vista a la alberca, a 5 minutos de Plaza Las Américas…"></textarea>
+    </label>
+    <p class="hint">Si la dejas vacía, la armamos con los datos que capturaste.</p>
+  </div>
+</section>
+
+<!-- PASO 3 -->
+<section class="step" id="step-fotos" hidden>
+  <h1>Fotos</h1>
+  <p class="lead">Sube todas. La <b>01</b> es la portada del anuncio: la más luminosa (sala con luz, alberca o fachada de día). Indica qué es cada foto y ordenamos el resto como se publica.</p>
+  <div class="card">
+    <label class="drop" id="drop">
+      <input type="file" accept="image/*" multiple id="fotoFile" hidden>
+      <b>Toca para elegir fotos</b><span>o arrástralas aquí</span>
+    </label>
+    <div class="photo-actions">
+      <button type="button" class="btn ghost" id="ordenar">Ordenar como se publica</button>
+      <span class="hint" id="fotoCount"></span>
+    </div>
+    <ol class="photos" id="photos"></ol>
+  </div>
+</section>
+
+<!-- PASO 4 -->
+<section class="step" id="step-kit" hidden>
+  <h1>Tu kit de publicación</h1>
+  <div class="card" id="faltan" hidden></div>
+  <div class="card gen">
+    <button type="button" class="btn big" id="generar">Generar mi kit</button>
+    <p class="hint" id="genStatus">Se genera en tu teléfono; nada se sube a internet.</p>
+  </div>
+  <div id="kit" hidden>
+    <div class="card">
+      <h2>Todo en un archivo</h2>
+      <p class="hint">Ficha PDF, fotos numeradas, historia, catálogo y textos.</p>
+      <div class="btns"><button type="button" class="btn" id="dlZip">Descargar todo (ZIP)</button></div>
+    </div>
+    <div class="card">
+      <h2>Ficha PDF</h2>
+      <div class="pdf-pages" id="pdfPages"></div>
+      <div class="btns"><button type="button" class="btn" id="dlPdf">Descargar PDF</button><button type="button" class="btn ghost share" data-share="pdf">Compartir</button></div>
+    </div>
+    <div class="card">
+      <h2>Fotos para Marketplace y portales</h2>
+      <p class="hint">Súbelas en este orden. La 01 va limpia, sin texto. La última es la ficha resumen: <b>solo para Marketplace y redes</b>; en Mercado Libre, Inmuebles24 y Vivanuncios omítela.</p>
+      <ol class="seq" id="seq"></ol>
+      <div class="btns"><button type="button" class="btn ghost share" data-share="fotos">Compartir fotos</button></div>
+    </div>
+    <div class="card">
+      <h2>Ficha resumen, catálogo e historia</h2>
+      <div class="row2">
+        <label>Foto de fondo para ficha resumen y catálogo<select id="bgSel"></select></label>
+        <label>Foto para la historia<select id="hiSel"></select></label>
+      </div>
+      <div class="gallery">
+        <figure><img id="imgPortada" alt="Ficha resumen"><figcaption>Ficha resumen · Marketplace (última foto)</figcaption>
+          <div class="btns"><button type="button" class="btn ghost sm" data-dl="portada">Descargar</button><button type="button" class="btn ghost sm share" data-share="portada">Compartir</button></div></figure>
+        <figure><img id="imgCatalogo" alt="Catálogo de WhatsApp"><figcaption>Catálogo de WhatsApp Business</figcaption>
+          <div class="btns"><button type="button" class="btn ghost sm" data-dl="catalogo">Descargar</button><button type="button" class="btn ghost sm share" data-share="catalogo">Compartir</button></div></figure>
+        <figure class="tall"><img id="imgHistoria" alt="Historia vertical"><figcaption>Historia · WhatsApp, Instagram y Facebook</figcaption>
+          <div class="btns"><button type="button" class="btn ghost sm" data-dl="historia">Descargar</button><button type="button" class="btn ghost sm share" data-share="historia">Compartir</button></div></figure>
+      </div>
+    </div>
+    <div id="textos"></div>
+  </div>
+</section>
+</main>
+
+<footer class="bar">
+  <button type="button" class="btn ghost" id="atras">Atrás</button>
+  <button type="button" class="btn" id="siguiente">Siguiente</button>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
